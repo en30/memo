@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import Memo from './Memo'
 import {css} from 'glamor'
-import memos from '../../memos'
+import memos from '../memos'
 
 const style = css({
   listStyle: 'none',

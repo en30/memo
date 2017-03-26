@@ -1,21 +1,13 @@
 const {resolve} = require('path');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    './lib/index.js'
-  ],
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/'
   },
   context: resolve(__dirname),
-  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.es6.jsx', '.jsx', '.css'],
     modules: [ 'node_modules' ]
@@ -25,12 +17,12 @@ module.exports = {
       {
         test: /\/memos\/.+\.md$/,
         enforce: 'pre',
-        loaders: [resolve(__dirname, 'md2react-loader')],
+        loaders: [resolve(__dirname, './lib/md2react-loader')],
       },
       {
         test: /\/memos\//,
         exclude: /(node_modules|index.js$)/,
-        loaders: [resolve(__dirname, 'with-birthtime-loader')],
+        loaders: [resolve(__dirname, './lib/with-birthtime-loader')],
       },
       {
         test: /(\.jsx?|\/memos\/.+\.md)$/,
@@ -42,15 +34,16 @@ module.exports = {
             'transform-function-bind',
             'transform-class-properties',
             'transform-object-rest-spread',
-            'react-hot-loader/babel'
           ]
         }
       },
     ]
   },
-
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-  ],
+    new HtmlWebpackPlugin({
+      title: "en30's memo",
+      template: 'lib/index.ejs',
+      inject: false
+    })
+  ]
 }
