@@ -29,6 +29,6 @@ build/Release
 node_modules
 
 dist
-!dist/index.html
+!/dist/index.html
 
-src/memos
+/memos

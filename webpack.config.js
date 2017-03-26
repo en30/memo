@@ -7,33 +7,28 @@ module.exports = {
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
     'babel-polyfill',
-    './index.js'
+    './lib/index.js'
   ],
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  context: resolve(__dirname, 'src'),
+  context: resolve(__dirname),
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.es6.jsx', '.jsx', '.css'],
     modules: [ 'node_modules' ]
   },
-  devServer: {
-    hot: true,
-    contentBase: resolve(__dirname, 'dist'),
-    publicPath: '/'
-  },
   module: {
     rules: [
       {
-        test: /\/src\/memos\/.+\.md$/,
+        test: /\/memos\/.+\.md$/,
         enforce: 'pre',
         loaders: [resolve(__dirname, 'md2react-loader')],
       },
       {
-        test: /\/src\/memos\//,
+        test: /\/memos\//,
         exclude: /(node_modules|index.js$)/,
         loaders: [resolve(__dirname, 'with-birthtime-loader')],
       },

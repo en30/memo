@@ -4,7 +4,7 @@ module.exports = function(source) {
   return `
 import React from "react"
 import ReactMarkdown from "react-markdown"
-import HighlightedCodeBlock from "../components/HighlightedCodeBlock"
+import HighlightedCodeBlock from "../lib/components/HighlightedCodeBlock"
 
 const source = ${JSON.stringify(source)};
 export default () => <ReactMarkdown source={source} renderers={{CodeBlock: HighlightedCodeBlock}} />

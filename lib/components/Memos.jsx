@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import Memo from './Memo'
 import {css} from 'glamor'
-import memos from '../memos'
+import memos from '../../memos'
 
 const style = css({
   listStyle: 'none',
@@ -10,7 +10,7 @@ const style = css({
   '& > li': {
     padding: '8px 4px',
   },
-  '& li + li': {
+  '& > li + li': {
     borderTop: '1px solid #999'
   }
 })
